@@ -35,8 +35,6 @@ public class Player : MonoBehaviour
 
         isMoving = directionVector.x != 0 || directionVector.y != 0;
 
-        Debug.Log(isMoving + " " + directionVector.x + " " + directionVector.y);
-
         body.velocity = directionVector * moveSpeed;
     }
 
@@ -50,4 +48,9 @@ public class Player : MonoBehaviour
         return directionVector;
     }
 
+    public Vector3 GetPlayerPosition()
+    {
+        Vector3 playerPosition = Camera.main.WorldToScreenPoint(transform.position);
+        return playerPosition;
+    }
 }

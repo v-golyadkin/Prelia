@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
@@ -21,5 +22,11 @@ public class GameInput : MonoBehaviour
         Vector2 inputVector = playerInputActions.Movement.Move.ReadValue<Vector2>();
 
         return inputVector;
+    }
+
+    public Vector3 GetMousePosition()
+    {
+        Vector3 mousePosition = Mouse.current.position.ReadValue();
+        return mousePosition;
     }
 }
