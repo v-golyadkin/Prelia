@@ -19,9 +19,9 @@ public class PlayerVisual : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(GameInput.Instance.GetMousePosition());
-        AdjustPlayerFacingDirection();
         animator.SetBool(IS_MOVING, Player.Instance.IsMoving());
+        AdjustPlayerFacingDirection();
+
 
         //if(Player.Instance.IsMoving())
         //{
