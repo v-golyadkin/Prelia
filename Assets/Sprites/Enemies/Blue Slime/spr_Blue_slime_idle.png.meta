@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cf4776210f081d543b9889fb214d111d
+guid: 4a8e3893218cd86479dd86305cd3cbe5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_player_right_walk_shadowless_0
+      name: spr_Blue_slime_idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 624ae89e77233474c8e8c560f1db2f5e
-      internalID: 1403387818
+      spriteID: 540fb9e9a5a71834baaf4690071a8d0c
+      internalID: 1763063380
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_player_right_walk_shadowless_1
+      name: spr_Blue_slime_idle_1
       rect:
         serializedVersion: 2
         x: 64
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afa4fd43926a2f74eb068b7c0c915846
-      internalID: -1148871123
+      spriteID: e56cbbebbbdff214bb91f8493326efad
+      internalID: -427838519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_player_right_walk_shadowless_2
+      name: spr_Blue_slime_idle_2
       rect:
         serializedVersion: 2
         x: 128
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ed03cfa0e99ab84f851ac5b0bc17d72
-      internalID: -1888034423
+      spriteID: 161569523db158b498cd9004ee4af634
+      internalID: -1924188659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_player_right_walk_shadowless_3
+      name: spr_Blue_slime_idle_3
       rect:
         serializedVersion: 2
         x: 192
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82d8ca47853d5ca4f985e6d5b245d4e7
-      internalID: 799384040
+      spriteID: 5073b757d75d5fd46b99f756fa99b87c
+      internalID: 632098141
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_player_right_walk_shadowless_4
+      name: spr_Blue_slime_idle_4
       rect:
         serializedVersion: 2
         x: 256
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93d371769a39f7b4a89adae8cd8b93af
-      internalID: -238000638
+      spriteID: 56a6f128f2670b74bbf787e9b7af51f3
+      internalID: 1343562706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_player_right_walk_shadowless_5
+      name: spr_Blue_slime_idle_5
       rect:
         serializedVersion: 2
         x: 320
@@ -229,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d459abdce5a48c4e84e1741c0a73ca8
-      internalID: 1554735298
+      spriteID: 0156ee7abf6417448b8f77bff5f69557
+      internalID: 1608639476
       vertices: []
       indices: 
       edges: []
@@ -246,12 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spr_player_right_walk_shadowless_0: 1403387818
-      spr_player_right_walk_shadowless_1: -1148871123
-      spr_player_right_walk_shadowless_2: -1888034423
-      spr_player_right_walk_shadowless_3: 799384040
-      spr_player_right_walk_shadowless_4: -238000638
-      spr_player_right_walk_shadowless_5: 1554735298
+      spr_Blue_slime_idle_0: 1763063380
+      spr_Blue_slime_idle_1: -427838519
+      spr_Blue_slime_idle_2: -1924188659
+      spr_Blue_slime_idle_3: 632098141
+      spr_Blue_slime_idle_4: 1343562706
+      spr_Blue_slime_idle_5: 1608639476
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
