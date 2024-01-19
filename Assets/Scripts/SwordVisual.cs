@@ -25,15 +25,21 @@ public class SwordVisual : MonoBehaviour
     {
         animator.SetTrigger(ATTACK);
     }
+    private void Update()
+    {
+        AdjustPlayerFacingDirection();
+    }
 
     private void AdjustPlayerFacingDirection()
     {
         Vector3 mousePosition = GameInput.Instance.GetMousePosition();
         Vector3 playerPosition = Player.Instance.GetPlayerPosition();
 
+        float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
+
         if (mousePosition.x < playerPosition.x)
-            spriteRenderer.flipX = true;
+            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, -180, angle);
         else
-            spriteRenderer.flipX = false;
+            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }
