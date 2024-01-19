@@ -1,24 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
-public class PlayerVisual : MonoBehaviour
+public class SwordVisual : MonoBehaviour
 {
-    private const string IS_MOVING = "isMoving";
-    private SpriteRenderer spriteRenderer;
+    private const string ATTACK = "Attack";
+
+    [SerializeField] private Sword sword;
 
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    private void Update()
+
+    private void Start()
     {
-        animator.SetBool(IS_MOVING, Player.Instance.IsMoving());
-        AdjustPlayerFacingDirection();
+        sword.OnSwordSwing += Sword_OnSwordSwing;
+    }
+
+    private void Sword_OnSwordSwing(object sender, System.EventArgs e)
+    {
+        animator.SetTrigger(ATTACK);
     }
 
     private void AdjustPlayerFacingDirection()
