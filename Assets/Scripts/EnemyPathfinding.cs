@@ -8,14 +8,17 @@ public class EnemyPathfinding : MonoBehaviour
 
     private Rigidbody2D body;
     private Vector2 directionVector;
+    private Knockback knockback;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
+        knockback = GetComponent<Knockback>();
     }
 
     private void FixedUpdate()
     {
+        if (knockback.gettingKnockBack) { return; }
         body.velocity = moveSpeed * directionVector;
     }
 
