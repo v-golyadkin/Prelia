@@ -8,15 +8,25 @@ public class Player : MonoBehaviour
     public static Player Instance { get; private set; }
 
     [SerializeField] private float moveSpeed = 4f;
+    [SerializeField] private float dashSpeed = 8f;
+    [SerializeField] private TrailRenderer trailRenderer;
 
     private Vector2 directionVector;
     private Rigidbody2D body;
 
     private bool isMoving = false;
+    private bool isDashing = false;
+
 
     private void Start()
     {
-        GameInput.Instance.OnPlayerAttack += GameInput_OnPlayerAttack;    
+        GameInput.Instance.OnPlayerAttack += GameInput_OnPlayerAttack;
+        GameInput.Instance.OnPlayerDash += GameInput_OnPlayerDash;
+    }
+
+    private void GameInput_OnPlayerDash(object sender, System.EventArgs e)
+    {
+        Dash();
     }
 
     private void GameInput_OnPlayerAttack(object sender, System.EventArgs e)
@@ -46,6 +56,29 @@ public class Player : MonoBehaviour
         isMoving = directionVector.x != 0 || directionVector.y != 0;
 
         body.velocity = directionVector * moveSpeed;
+    }
+
+    private void Dash()
+    {
+        if(!isDashing)
+        {
+            isDashing = true;
+            moveSpeed *= dashSpeed;
+            trailRenderer.emitting = true;
+            StartCoroutine(EndDashRoutine());
+        }
+    }
+
+    private IEnumerator EndDashRoutine()
+    {
+        float dashTime = .2f;
+        float dashColdown = .20f;
+        
+        yield return new WaitForSeconds(dashTime);
+        moveSpeed /= dashSpeed;
+        trailRenderer.emitting = false;
+        yield return new WaitForSeconds(dashColdown);
+        isDashing = false;
     }
 
     public bool IsMoving()
