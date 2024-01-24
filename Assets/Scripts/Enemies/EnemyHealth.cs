@@ -9,12 +9,10 @@ public class EnemyHealth : MonoBehaviour
 
     private float currentHealth;
     private Knockback knockback;
-    //private Flash flash;
 
     private void Awake()
     {
         knockback = GetComponent<Knockback>();    
-        //flash = GetComponent<Flash>();
     }
 
     private void Start()
