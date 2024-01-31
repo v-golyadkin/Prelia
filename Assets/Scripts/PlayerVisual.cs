@@ -11,11 +11,11 @@ public class PlayerVisual : MonoBehaviour
 
     private PlayerController _playerController;
 
-    [Inject]
-    private void Construct(PlayerController playerController)
-    {
-        _playerController = playerController;
-    }
+    //[Inject]
+    //private void Construct(PlayerController playerController)
+    //{
+    //    _playerController = playerController;
+    //}
 
     private void Awake()
     {

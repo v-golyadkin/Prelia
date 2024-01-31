@@ -11,6 +11,7 @@ public class Unit : MonoBehaviour
     [SerializeField] public int damage;
     [SerializeField] public int maxHP;
     [SerializeField] public int currentHP;
+    [SerializeField] public float speed;
 
     public bool TakeDamege(int damage)
     {

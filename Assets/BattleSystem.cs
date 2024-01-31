@@ -42,8 +42,11 @@ public class BattleSystem : MonoBehaviour
     IEnumerator InitBattle()
     {
         GameObject playerGO = Instantiate(_playerPrefab, _playerBattleStation);
-        playerGO.GetComponent<PlayerController>().enabled = false;
+        //playerGO.GetComponent<PlayerController>().enabled = false;
         playerGO.GetComponentInChildren<PlayerVisual>().enabled = false;
+
+        playerGO.GetComponentInChildren<Animator>().SetFloat("directionX", 1);
+
         _playerUnit = playerGO.GetComponent<Unit>();
 
         GameObject enemyGO = Instantiate(_enemyPrefab, _enemyBattleStation);

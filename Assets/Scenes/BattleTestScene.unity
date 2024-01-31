@@ -2532,7 +2532,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1066761341}
   - component: {fileID: 1066761340}
-  - component: {fileID: 1066761339}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -2540,20 +2539,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1066761339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066761338}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05146b007930d824d8e245eb3e2e23c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterStats: {fileID: 11400000, guid: 37699dbf1a6451447bb3add3423e39a4, type: 2}
-  _playerController: {fileID: 3156704758589240450, guid: a42a84800d8e9cf468e16254ac42b39b, type: 3}
 --- !u!114 &1066761340
 MonoBehaviour:
   m_ObjectHideFlags: 0
