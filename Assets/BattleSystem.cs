@@ -42,10 +42,10 @@ public class BattleSystem : MonoBehaviour
     IEnumerator InitBattle()
     {
         GameObject playerGO = Instantiate(_playerPrefab, _playerBattleStation);
-        //playerGO.GetComponent<PlayerController>().enabled = false;
-        playerGO.GetComponentInChildren<PlayerVisual>().enabled = false;
+        playerGO.GetComponent<PlayerController>().enabled = false;
+        //playerGO.GetComponentInChildren<PlayerVisual>().enabled = false;
 
-        playerGO.GetComponentInChildren<Animator>().SetFloat("directionX", 1);
+        playerGO.GetComponent<Animator>().SetFloat("directionX", 1);
 
         _playerUnit = playerGO.GetComponent<Unit>();
 
@@ -83,6 +83,28 @@ public class BattleSystem : MonoBehaviour
         _playerHUD.SetHP(_playerUnit.currentHP);
 
         StartCoroutine(EnemyTurn());
+    }
+
+    public void OnKillButton()
+    {
+        if (state != BattleState.PlayerTurn)
+            return;
+
+        bool isDead = _enemyUnit.TakeDamege(_enemyUnit.maxHP);
+
+        _dialogueText.text = "Attack is successful";
+        _enemyHUD.SetHP(_enemyUnit.currentHP);
+
+        if (isDead)
+        {
+            state = BattleState.Won;
+            EndBattle();
+        }
+        else
+        {
+            state = BattleState.EnemyTurn;
+            StartCoroutine(EnemyTurn());
+        }
     }
 
     IEnumerator PlayerAttack()
@@ -136,6 +158,8 @@ public class BattleSystem : MonoBehaviour
 
     private void EndBattle()
     {
+        
+
         if(state == BattleState.Won)
         {
             _dialogueText.text = "Congritulation!!! You WON";
