@@ -3,24 +3,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IMoveable
 {
+    public static PlayerController instance;
+
     [SerializeField] private PlayerConfig PlayerConfig;
+    [SerializeField] private TrailRenderer _trailRenderer;
 
     private PlayerActions _playerActions;
-    private Vector2 _movement;
+    private Vector2 _moveDirection;
     private Rigidbody2D _rb;
 
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
-    
+    private bool _facingLeft = false;
+    private bool _isDashing = false;
+
+    private float _startingMovespeed;
+
+    public bool FacingLeft { get => _facingLeft; }
 
     private void Awake()
     {
+        instance = this;
+
         _playerActions = new PlayerActions();
-        _rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();       
         _animator = GetComponentInChildren<Animator>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        _playerActions.Combat.Dash.performed += _ => Dash();
+
+        _startingMovespeed = PlayerConfig.MoveSpeed;
     }
 
     private void OnEnable()
@@ -47,23 +64,47 @@ public class PlayerController : MonoBehaviour
         if(mousePosition.x < playerScreenPoint.x)
         {
             _spriteRenderer.flipX = true;
+            _facingLeft = true;
         }
         else
         {
             _spriteRenderer.flipX = false;
+            _facingLeft = false;
         }
     }
 
     private void PlayerInput()
     {
-        _movement = _playerActions.Movement.Move.ReadValue<Vector2>();
+        _moveDirection = _playerActions.Movement.Move.ReadValue<Vector2>();
 
-        _animator.SetFloat("moveX", _movement.x);
-        _animator.SetFloat("moveY", _movement.y);
+        _animator.SetFloat("moveX", _moveDirection.x);
+        _animator.SetFloat("moveY", _moveDirection.y);
     }
 
-    private void Move()
+    public void Move()
     {
-        _rb.MovePosition(_rb.position + _movement * (PlayerConfig.MoveSpeed * Time.fixedDeltaTime));
+        _rb.MovePosition(_rb.position + _moveDirection * (PlayerConfig.MoveSpeed * Time.fixedDeltaTime));
+    }
+
+    private void Dash()
+    {
+        if(!_isDashing)
+        {
+            _isDashing = true;
+            PlayerConfig.MoveSpeed *= PlayerConfig.DashSpeed;
+            _trailRenderer.emitting = true;
+            StartCoroutine(EndDashRoutine());
+        }
+    }
+
+    private IEnumerator EndDashRoutine()
+    {
+        float dashTime = .2f;
+        float dashCoolDown = .25f;
+        yield return new WaitForSeconds(dashTime);
+        PlayerConfig.MoveSpeed = _startingMovespeed;
+        _trailRenderer.emitting = false;
+        yield return new WaitForSeconds(dashCoolDown);
+        _isDashing = false;
     }
 }
