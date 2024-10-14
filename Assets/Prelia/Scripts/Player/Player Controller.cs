@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IMoveable
+public class PlayerController : Singleton<PlayerController>, IMoveable
 {
-    public static PlayerController instance;
-
     [SerializeField] private PlayerConfig PlayerConfig;
     [SerializeField] private TrailRenderer _trailRenderer;
 
@@ -23,9 +21,9 @@ public class PlayerController : MonoBehaviour, IMoveable
 
     public bool FacingLeft { get => _facingLeft; }
 
-    private void Awake()
+    protected override void Awake()
     {
-        instance = this;
+        base.Awake();
 
         _playerActions = new PlayerActions();
         _rb = GetComponent<Rigidbody2D>();       
