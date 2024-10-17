@@ -10,11 +10,13 @@ public class EnemyPathfinding : MonoBehaviour, IMoveable
     private Rigidbody2D _rb;
     private Vector2 _moveDirection;
     private Knockback _knockback;
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _knockback = GetComponent<Knockback>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -22,6 +24,15 @@ public class EnemyPathfinding : MonoBehaviour, IMoveable
         if(_knockback.GettingKnockedBack) { return; }
 
         Move();
+
+        if(_moveDirection.x < 0)
+        {
+            _spriteRenderer.flipX = true;
+        }
+        else
+        {
+            _spriteRenderer.flipX = false;
+        }
     }
 
     public void MoveTo(Vector2 targetPosition)

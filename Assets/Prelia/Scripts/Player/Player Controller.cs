@@ -7,6 +7,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
 {
     [SerializeField] private PlayerConfig PlayerConfig;
     [SerializeField] private TrailRenderer _trailRenderer;
+    [SerializeField] private Transform _weaponCollider;
 
     private PlayerActions _playerActions;
     private Vector2 _moveDirection;
@@ -54,6 +55,16 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
         Move();
     }
 
+    public void Move()
+    {
+        _rb.MovePosition(_rb.position + _moveDirection * (PlayerConfig.MoveSpeed * Time.fixedDeltaTime));
+    }
+
+    public Transform GetWeaponCollider()
+    {
+        return _weaponCollider;
+    }
+
     private void AdjustPlayerFacingDirection()
     {
         Vector3 mousePosition = Input.mousePosition;
@@ -79,10 +90,6 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
         _animator.SetFloat("moveY", _moveDirection.y);
     }
 
-    public void Move()
-    {
-        _rb.MovePosition(_rb.position + _moveDirection * (PlayerConfig.MoveSpeed * Time.fixedDeltaTime));
-    }
 
     private void Dash()
     {
