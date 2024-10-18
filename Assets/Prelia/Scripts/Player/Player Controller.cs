@@ -15,6 +15,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
 
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+    private Knockback _knockback;
     private bool _facingLeft = false;
     private bool _isDashing = false;
 
@@ -30,6 +31,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
         _rb = GetComponent<Rigidbody2D>();       
         _animator = GetComponentInChildren<Animator>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _knockback = GetComponent<Knockback>();
     }
 
     private void Start()
@@ -57,6 +59,8 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
 
     public void Move()
     {
+        if(_knockback.GettingKnockedBack) { return; }
+
         _rb.MovePosition(_rb.position + _moveDirection * (PlayerConfig.MoveSpeed * Time.fixedDeltaTime));
     }
 

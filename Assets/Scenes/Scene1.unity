@@ -6049,6 +6049,7 @@ GameObject:
   - component: {fileID: 822725825}
   - component: {fileID: 822725826}
   - component: {fileID: 822725827}
+  - component: {fileID: 822725828}
   m_Layer: 0
   m_Name: PlayerView
   m_TagString: Untagged
@@ -6144,6 +6145,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &822725828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822725824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51019f8889df4f45a64deb270ba39c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _whiteFlashMaterial: {fileID: 2100000, guid: 507386d3cd09fb94eae1a8f8e4681a08, type: 2}
+  _restoreDefaultMaterialTime: 0.2
 --- !u!1 &860583867
 GameObject:
   m_ObjectHideFlags: 0
@@ -18594,6 +18609,8 @@ GameObject:
   - component: {fileID: 1916001909}
   - component: {fileID: 1916001911}
   - component: {fileID: 1916001912}
+  - component: {fileID: 1916001915}
+  - component: {fileID: 1916001913}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -18709,6 +18726,34 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &1916001913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916001907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf5953783bcad04bb7ef463535c17f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _knockBackTime: 0.2
+--- !u!114 &1916001915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916001907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2835a8397a15547974d881f424f4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 3
+  _knockBackThrustAmount: 10
+  _damageRecovetyTime: 1
 --- !u!1 &1994075840
 GameObject:
   m_ObjectHideFlags: 0
