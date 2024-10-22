@@ -35,13 +35,18 @@ public class EnemyPathfinding : MonoBehaviour, IMoveable
         }
     }
 
+    public void Move()
+    {
+        _rb.MovePosition(_rb.position + _moveDirection * (_moveSpeed * Time.fixedDeltaTime));
+    }
+
     public void MoveTo(Vector2 targetPosition)
     {
         _moveDirection = targetPosition;
     }
 
-    public void Move()
+    public void StopMoving()
     {
-        _rb.MovePosition(_rb.position + _moveDirection * (_moveSpeed * Time.fixedDeltaTime));
+        _moveDirection = Vector3.zero;
     }
 }

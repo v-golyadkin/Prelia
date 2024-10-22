@@ -29,16 +29,20 @@ public class PlayerHealth : MonoBehaviour
     {
         EnemyAI enemy = collision.gameObject.GetComponent<EnemyAI>();
 
-        if(enemy && _canTakeDamage)
+        if(enemy)
         {
-            TakeDamage(1);
-            _knockback.GetKnockedBack(collision.gameObject.transform, _knockBackThrustAmount);
-            StartCoroutine(_flash.FlashRoutine());
+            TakeDamage(1, collision.transform);
         }
     }
 
-    private void TakeDamage(int amount)
+    public void TakeDamage(int amount, Transform hitTransform)
     {
+        if(!_canTakeDamage) { return; }
+
+        ScreenShakeManager.Instance.ScreenShake();
+        _knockback.GetKnockedBack(hitTransform, _knockBackThrustAmount);
+        StartCoroutine(_flash.FlashRoutine());
+
         _canTakeDamage = false;
         _currentHealth -= amount;
         StartCoroutine(DamageRecoveryRoutine());

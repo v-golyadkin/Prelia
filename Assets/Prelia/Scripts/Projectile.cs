@@ -7,8 +7,9 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 22f;
     [SerializeField] private GameObject _particleOnHitPrefab;
+    [SerializeField] private bool _isEnemyProjectile = false;
+    [SerializeField] private float _projectileRange = 10f;
 
-    private WeaponConfig _weaponConfig;
     private Vector3 _startPosition;
 
     private void Start()
@@ -26,17 +27,27 @@ public class Projectile : MonoBehaviour
     {
         EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
         Indestructible indestructible = collision.gameObject.GetComponent<Indestructible>();
+        PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
 
-        if(!collision.isTrigger && (enemyHealth || indestructible))
+        if(!collision.isTrigger && (enemyHealth || indestructible || playerHealth))
         {
-            Instantiate(_particleOnHitPrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            if((playerHealth && _isEnemyProjectile) || (enemyHealth && !_isEnemyProjectile))
+            {
+                playerHealth?.TakeDamage(1, transform);
+                Instantiate(_particleOnHitPrefab, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
+            else if(!collision.isTrigger && indestructible)
+            {
+                Instantiate(_particleOnHitPrefab, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
         }
     }
 
-    public void UpdateWeaponInfo(WeaponConfig weaponConfig)
+    public void UpdateProjectileRange(float projectileRange)
     {
-        _weaponConfig = weaponConfig;
+        _projectileRange = projectileRange;
     }
 
     private void MoveProjectile()
@@ -46,9 +57,14 @@ public class Projectile : MonoBehaviour
 
     private void DetectFireDistance()
     {
-        if(Vector3.Distance(transform.position, _startPosition) > _weaponConfig.weaponRange)
+        if(Vector3.Distance(transform.position, _startPosition) > _projectileRange)
         {
             Destroy(gameObject);
         }
+    }
+
+    public void UpdateMoveSpeed(float moveSpeed)
+    {
+        _moveSpeed = moveSpeed;
     }
 }
