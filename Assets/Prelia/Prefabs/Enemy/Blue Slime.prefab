@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 7177277841441076346}
   - component: {fileID: 2990449141194560589}
   - component: {fileID: 8870990122981004104}
+  - component: {fileID: 719611128783494027}
   m_Layer: 0
   m_Name: Blue Slime
   m_TagString: Untagged
@@ -233,6 +234,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80dd220b1d7d9fb4baad9eef0fe04a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _roamingChangeDirection: 2
+  _enemyType: {fileID: 719611128783494027}
+  _attackRange: 5
+  _attackCooldown: 2
+  _stopMovingWhileAttacking: 0
 --- !u!114 &7177277841441076346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 3
   _deathVFXPrefab: {fileID: 1028197727296259862, guid: cbd69d1230a628c47b91105fc3e5fb62, type: 3}
+  _knockBackThrust: 15
 --- !u!114 &8870990122981004104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,3 +280,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _knockBackTime: 0.2
+--- !u!114 &719611128783494027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9130952143394034953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f64dd9f866c11946a46861d40938138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
