@@ -12013,7 +12013,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1126899461}
   m_Layer: 5
-  m_Name: Heart Container
+  m_Name: Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22701,6 +22701,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1621012448000179194, guid: 9d2a0d589fce5e444a0cab7fc4f39a36, type: 3}
+      propertyPath: _config
+      value: 
+      objectReference: {fileID: 11400000, guid: b5b2c6ed373d6a94e8fd03516e1b8913, type: 2}
     - target: {fileID: 2310360769571770438, guid: 9d2a0d589fce5e444a0cab7fc4f39a36, type: 3}
       propertyPath: _config
       value: 

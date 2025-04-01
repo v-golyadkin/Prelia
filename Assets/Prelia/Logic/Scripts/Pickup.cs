@@ -74,7 +74,7 @@ public class Pickup : MonoBehaviour
                 Debug.Log("Stamina");
                 break;
             case PickUpType.HealthGlobe:
-                Debug.Log("Health");
+                PlayerHealth.Instance.Heal(1);
                 break;
         }
     }
