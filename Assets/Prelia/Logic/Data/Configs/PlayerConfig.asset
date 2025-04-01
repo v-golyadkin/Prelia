@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56b1628be48aac4ba6dcc682454f314, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  MoveSpeed: 4
+  maxHealth: 4
+  moveSpeed: 4
+  dashSpeed: 4
