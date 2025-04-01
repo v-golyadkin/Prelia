@@ -22701,6 +22701,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2310360769571770438, guid: 9d2a0d589fce5e444a0cab7fc4f39a36, type: 3}
+      propertyPath: _config
+      value: 
+      objectReference: {fileID: 11400000, guid: b5b2c6ed373d6a94e8fd03516e1b8913, type: 2}
+    - target: {fileID: 2310360769571770438, guid: 9d2a0d589fce5e444a0cab7fc4f39a36, type: 3}
+      propertyPath: _healthSlider
+      value: 
+      objectReference: {fileID: 1969466802}
     - target: {fileID: 7586818610826874203, guid: 9d2a0d589fce5e444a0cab7fc4f39a36, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1

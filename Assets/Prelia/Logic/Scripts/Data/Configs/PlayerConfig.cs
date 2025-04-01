@@ -1,12 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "Configs/PlayerConfigs/PlayerConfig")]
 public class PlayerConfig : ScriptableObject
 {
+    [Header("Player Stats")]
+    public int maxHealth = 4;
+
+
     [Header("Movement")]
-    public float MoveSpeed = 1f;
-    public float DashSpeed = 4f;
+    public float moveSpeed = 1f;
+    public float dashSpeed = 4f;
+
 
 }

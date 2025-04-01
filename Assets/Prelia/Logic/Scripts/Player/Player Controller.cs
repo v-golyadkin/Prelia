@@ -36,7 +36,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
     {
         _playerActions.Combat.Dash.performed += _ => Dash();
 
-        _startingMovespeed = _config.MoveSpeed;
+        _startingMovespeed = _config.moveSpeed;
     }
 
     private void OnEnable()
@@ -59,7 +59,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
     {
         if(_knockback.GettingKnockedBack) { return; }
 
-        _rb.MovePosition(_rb.position + _moveDirection * (_config.MoveSpeed * Time.fixedDeltaTime));
+        _rb.MovePosition(_rb.position + _moveDirection * (_config.moveSpeed * Time.fixedDeltaTime));
     }
 
     public Transform GetWeaponCollider()
@@ -98,7 +98,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
         if(!_isDashing)
         {
             _isDashing = true;
-            _config.MoveSpeed *= _config.DashSpeed;
+            _config.moveSpeed *= _config.dashSpeed;
             _trailRenderer.emitting = true;
             StartCoroutine(EndDashRoutine());
         }
@@ -109,7 +109,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
         float dashTime = .2f;
         float dashCoolDown = .25f;
         yield return new WaitForSeconds(dashTime);
-        _config.MoveSpeed = _startingMovespeed;
+        _config.moveSpeed = _startingMovespeed;
         _trailRenderer.emitting = false;
         yield return new WaitForSeconds(dashCoolDown);
         _isDashing = false;

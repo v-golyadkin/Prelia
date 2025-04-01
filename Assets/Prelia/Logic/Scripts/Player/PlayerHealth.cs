@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : Singleton<PlayerHealth>
 {
-    [SerializeField] private int _maxHealth = 3;
+    [SerializeField] private PlayerConfig _config;
+    [SerializeField] private Slider _healthSlider;
     [SerializeField] private float _knockBackThrustAmount = 10f;
     [SerializeField] private float _damageRecovetyTime = 1f;
 
@@ -24,7 +25,14 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     private void Start()
     {
-        _currentHealth = _maxHealth;
+        InitHealthSlider();
+    }
+
+    private void InitHealthSlider()
+    {
+        _healthSlider.maxValue = _config.maxHealth;
+
+        FullHeal();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -39,7 +47,19 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     public void Heal(int amount)
     {
-        _currentHealth += amount;   
+        _currentHealth += amount;
+
+        if (_currentHealth > _config.maxHealth)
+        {
+            _currentHealth = _config.maxHealth;
+        }
+           
+        UpdateHealthSlider();
+    }
+
+    private void FullHeal()
+    {
+        Heal(_config.maxHealth);
     }
 
     public void TakeDamage(int amount, Transform hitTransform)
@@ -53,6 +73,28 @@ public class PlayerHealth : Singleton<PlayerHealth>
         _canTakeDamage = false;
         _currentHealth -= amount;
         StartCoroutine(DamageRecoveryRoutine());
+
+        UpdateHealthSlider();
+        CheckDeath();
+    }
+
+    private void UpdateHealthSlider()
+    {
+        if(_healthSlider == null)
+        {
+            _healthSlider = GameObject.Find("Health Slider").GetComponent<Slider>();
+        }
+
+        _healthSlider.value = _currentHealth;
+    }
+
+    private void CheckDeath()
+    {
+        if(_currentHealth <= 0)
+        {
+            _currentHealth = 0;
+            Debug.Log("Death");
+        }
     }
 
     private IEnumerator DamageRecoveryRoutine()
