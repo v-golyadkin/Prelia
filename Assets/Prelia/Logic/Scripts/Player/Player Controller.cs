@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : Singleton<PlayerController>, IMoveable
 {
-    [SerializeField] private PlayerConfig PlayerConfig;
+    [SerializeField] private PlayerConfig _config;
     [SerializeField] private TrailRenderer _trailRenderer;
     [SerializeField] private Transform _weaponCollider;
 
@@ -38,7 +36,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
     {
         _playerActions.Combat.Dash.performed += _ => Dash();
 
-        _startingMovespeed = PlayerConfig.MoveSpeed;
+        _startingMovespeed = _config.MoveSpeed;
     }
 
     private void OnEnable()
@@ -61,7 +59,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
     {
         if(_knockback.GettingKnockedBack) { return; }
 
-        _rb.MovePosition(_rb.position + _moveDirection * (PlayerConfig.MoveSpeed * Time.fixedDeltaTime));
+        _rb.MovePosition(_rb.position + _moveDirection * (_config.MoveSpeed * Time.fixedDeltaTime));
     }
 
     public Transform GetWeaponCollider()
@@ -100,7 +98,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
         if(!_isDashing)
         {
             _isDashing = true;
-            PlayerConfig.MoveSpeed *= PlayerConfig.DashSpeed;
+            _config.MoveSpeed *= _config.DashSpeed;
             _trailRenderer.emitting = true;
             StartCoroutine(EndDashRoutine());
         }
@@ -111,7 +109,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
         float dashTime = .2f;
         float dashCoolDown = .25f;
         yield return new WaitForSeconds(dashTime);
-        PlayerConfig.MoveSpeed = _startingMovespeed;
+        _config.MoveSpeed = _startingMovespeed;
         _trailRenderer.emitting = false;
         yield return new WaitForSeconds(dashCoolDown);
         _isDashing = false;
