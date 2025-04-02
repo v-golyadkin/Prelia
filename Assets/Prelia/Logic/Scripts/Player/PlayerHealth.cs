@@ -36,6 +36,11 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     private void InitHealthSlider()
     {
+        if (_healthSlider == null)
+        {
+            _healthSlider = GameObject.Find("Health Slider").GetComponent<Slider>();
+        }
+
         _healthSlider.maxValue = _config.maxHealth;
 
         FullHeal();
@@ -86,11 +91,6 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     private void UpdateHealthSlider()
     {
-        if(_healthSlider == null)
-        {
-            _healthSlider = GameObject.Find("Health Slider").GetComponent<Slider>();
-        }
-
         _healthSlider.value = _currentHealth;
     }
 
