@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : Singleton<PlayerHealth>
@@ -10,10 +10,14 @@ public class PlayerHealth : Singleton<PlayerHealth>
     [SerializeField] private float _knockBackThrustAmount = 10f;
     [SerializeField] private float _damageRecovetyTime = 1f;
 
+    public bool isDead { get; private set; }
+
     private int _currentHealth;
     private bool _canTakeDamage = true;
     private Knockback _knockback;
     private Flash _flash;
+
+    const string SPAWN_SCENE_TEXT = "Scene1";
 
     protected override void Awake()
     {
@@ -25,6 +29,8 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     private void Start()
     {
+        isDead = false;
+
         InitHealthSlider();
     }
 
@@ -90,10 +96,14 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     private void CheckDeath()
     {
-        if(_currentHealth <= 0)
+        if(_currentHealth <= 0 && !isDead)
         {
+            isDead = true;
+            Destroy(ActiveWeapon.Instance.gameObject);
+
             _currentHealth = 0;
-            Debug.Log("Death");
+            GetComponentInChildren<Animator>().SetTrigger("death");
+            StartCoroutine(DeathLoadSceneRoutine());
         }
     }
 
@@ -101,5 +111,12 @@ public class PlayerHealth : Singleton<PlayerHealth>
     {
         yield return new WaitForSeconds(_damageRecovetyTime);
         _canTakeDamage = true;
+    }
+
+    private IEnumerator DeathLoadSceneRoutine()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
+        SceneManager.LoadScene(SPAWN_SCENE_TEXT);
     }
 }

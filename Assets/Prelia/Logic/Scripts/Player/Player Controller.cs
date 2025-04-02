@@ -40,11 +40,18 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
         _playerActions.Combat.Dash.performed += _ => Dash();
 
         _startingMovespeed = _config.moveSpeed;
+
+        ActiveInventory.Instance.EquipStartingWeapon();
     }
 
     private void OnEnable()
     {
         _playerActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _playerActions.Disable();
     }
 
     private void Update()
@@ -60,7 +67,10 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
 
     public void Move()
     {
-        if(_knockback.GettingKnockedBack) { return; }
+        if(_knockback.GettingKnockedBack && PlayerHealth.Instance.isDead)
+        { 
+            return; 
+        }
 
         _rb.MovePosition(_rb.position + _moveDirection * (_config.moveSpeed * Time.fixedDeltaTime));
     }
