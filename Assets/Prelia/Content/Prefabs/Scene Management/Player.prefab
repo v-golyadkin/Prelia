@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 8482983468660653923}
   - component: {fileID: 2310360769571770438}
   - component: {fileID: 3762257060871054687}
+  - component: {fileID: 2820093754202474693}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -539,7 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e695fbfadce414b84f906658f820f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerConfig: {fileID: 11400000, guid: b5b2c6ed373d6a94e8fd03516e1b8913, type: 2}
+  _config: {fileID: 11400000, guid: b5b2c6ed373d6a94e8fd03516e1b8913, type: 2}
   _trailRenderer: {fileID: 6899735865647034379}
   _weaponCollider: {fileID: 2092952084382902998}
 --- !u!70 &8212765238162302738
@@ -601,7 +602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2835a8397a15547974d881f424f4d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 3
+  _config: {fileID: 11400000, guid: b5b2c6ed373d6a94e8fd03516e1b8913, type: 2}
+  _healthSlider: {fileID: 0}
   _knockBackThrustAmount: 10
   _damageRecovetyTime: 1
 --- !u!114 &3762257060871054687
@@ -617,3 +619,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _knockBackTime: 0.2
+--- !u!114 &2820093754202474693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9029774363476656929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04d97dcd9f98ba4c90d352e6e695440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fullStaminaSprite: {fileID: 21300000, guid: 9e3483339df1e594380d44fed469b6a5, type: 3}
+  _emptyStaminaSprite: {fileID: 21300000, guid: 080b23662a480344e9bfabb078cb52b4, type: 3}
+  _timeBetweenStaminaRefresh: 3
+  _staminaContainer: {fileID: 0}
