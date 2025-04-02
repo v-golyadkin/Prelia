@@ -22754,7 +22754,7 @@ PrefabInstance:
     - target: {fileID: 2310360769571770438, guid: 9d2a0d589fce5e444a0cab7fc4f39a36, type: 3}
       propertyPath: _healthSlider
       value: 
-      objectReference: {fileID: 1969466802}
+      objectReference: {fileID: 0}
     - target: {fileID: 2820093754202474693, guid: 9d2a0d589fce5e444a0cab7fc4f39a36, type: 3}
       propertyPath: _staminaContainer
       value: 
