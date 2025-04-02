@@ -67,7 +67,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
 
     public void Move()
     {
-        if(_knockback.GettingKnockedBack && PlayerHealth.Instance.isDead)
+        if(_knockback.GettingKnockedBack || PlayerHealth.Instance.isDead)
         { 
             return; 
         }
