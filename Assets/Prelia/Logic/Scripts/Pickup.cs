@@ -71,7 +71,7 @@ public class Pickup : MonoBehaviour
                 EconomyManager.Instance.AddCoin();
                 break;
             case PickUpType.StaminaGlobe:
-                Debug.Log("Stamina");
+                PlayerController.Instance.RestoreStamina();
                 break;
             case PickUpType.HealthGlobe:
                 PlayerHealth.Instance.Heal(1);

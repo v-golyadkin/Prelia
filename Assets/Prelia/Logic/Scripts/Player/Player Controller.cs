@@ -14,6 +14,8 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     private Knockback _knockback;
+    private Stamina _stamina;
+
     private bool _facingLeft = false;
     private bool _isDashing = false;
 
@@ -30,6 +32,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
         _animator = GetComponentInChildren<Animator>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _knockback = GetComponent<Knockback>();
+        _stamina = GetComponent<Stamina>();
     }
 
     private void Start()
@@ -67,6 +70,11 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
         return _weaponCollider;
     }
 
+    public void RestoreStamina()
+    {
+        _stamina.RefreshStamina();
+    }
+
     private void AdjustPlayerFacingDirection()
     {
         Vector3 mousePosition = Input.mousePosition;
@@ -95,8 +103,9 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
 
     private void Dash()
     {
-        if(!_isDashing)
+        if(!_isDashing && _stamina.CurrentStamina > 0)
         {
+            _stamina.UseStamina();
             _isDashing = true;
             _config.moveSpeed *= _config.dashSpeed;
             _trailRenderer.emitting = true;
