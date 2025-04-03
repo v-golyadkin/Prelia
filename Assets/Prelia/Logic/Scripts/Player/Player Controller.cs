@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Stamina))]
 public class PlayerController : Singleton<PlayerController>, IMoveable
 {
     [SerializeField] private PlayerConfig _config;
@@ -26,6 +27,8 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
     protected override void Awake()
     {
         base.Awake();
+
+
 
         _playerActions = new PlayerActions();
         _rb = GetComponent<Rigidbody2D>();       
@@ -67,7 +70,7 @@ public class PlayerController : Singleton<PlayerController>, IMoveable
 
     public void Move()
     {
-        if(_knockback.GettingKnockedBack || PlayerHealth.Instance.isDead)
+        if(_knockback.GettingKnockedBack || Player.Instance.isDead)
         { 
             return; 
         }

@@ -56,7 +56,7 @@ public class Pickup : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>())
+        if (collision.gameObject.GetComponent<Player>())
         {
             DeteckPickType();
             Destroy(gameObject);
@@ -71,10 +71,10 @@ public class Pickup : MonoBehaviour
                 EconomyManager.Instance.AddCoin();
                 break;
             case PickUpType.StaminaGlobe:
-                PlayerController.Instance.RestoreStamina();
+                Player.Instance.RestoreStamina();
                 break;
             case PickUpType.HealthGlobe:
-                PlayerHealth.Instance.Heal(1);
+                Player.Instance.Heal();
                 break;
         }
     }
