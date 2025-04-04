@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {   
-    private enum PickUpType
+    public enum PickUpType
     {
         GoldCoin,
-        StaminaGlobe,
-        HealthGlobe
+        Stamina,
+        Health
     }
 
     [SerializeField] private PickUpType _pickUpType;
@@ -35,7 +35,7 @@ public class Pickup : MonoBehaviour
 
     private void Update()
     {
-        Vector3 playerPosition = PlayerController.Instance.transform.position;
+        Vector3 playerPosition = Player.Instance.transform.position;
 
         if(Vector3.Distance(transform.position, playerPosition) < _pickUpDistance)
         {
@@ -58,24 +58,8 @@ public class Pickup : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Player>())
         {
-            DeteckPickType();
+            collision.gameObject.GetComponent<Player>().PickUp(_pickUpType);
             Destroy(gameObject);
-        }
-    }
-
-    private void DeteckPickType()
-    {
-        switch (_pickUpType)
-        {
-            case PickUpType.GoldCoin:
-                EconomyManager.Instance.AddCoin();
-                break;
-            case PickUpType.StaminaGlobe:
-                Player.Instance.RestoreStamina();
-                break;
-            case PickUpType.HealthGlobe:
-                Player.Instance.Heal();
-                break;
         }
     }
 
