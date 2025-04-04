@@ -11,7 +11,7 @@ public class AreaExit : MonoBehaviour
     private float _waitToLoadTime = 1f;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>())
+        if (collision.gameObject.GetComponent<Player>())
         {
             SceneManagement.Instance.SetTransitionName(_sceneTransitionName);
             UIFade.Instance.FadeToBlack();
