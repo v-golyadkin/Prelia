@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {   
-    private enum PickUpType
+    public enum PickUpType
     {
         GoldCoin,
-        StaminaGlobe,
-        HealthGlobe
+        Stamina,
+        Health
     }
 
     [SerializeField] private PickUpType _pickUpType;
@@ -35,7 +35,7 @@ public class Pickup : MonoBehaviour
 
     private void Update()
     {
-        Vector3 playerPosition = PlayerController.Instance.transform.position;
+        Vector3 playerPosition = Player.Instance.transform.position;
 
         if(Vector3.Distance(transform.position, playerPosition) < _pickUpDistance)
         {
@@ -51,31 +51,15 @@ public class Pickup : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = _moveDirection * _moveSpeed * Time.deltaTime;
+        _rb.linearVelocity = _moveDirection * _moveSpeed * Time.deltaTime;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>())
+        if (collision.gameObject.GetComponent<Player>())
         {
-            DeteckPickType();
+            collision.gameObject.GetComponent<Player>().PickUp(_pickUpType);
             Destroy(gameObject);
-        }
-    }
-
-    private void DeteckPickType()
-    {
-        switch (_pickUpType)
-        {
-            case PickUpType.GoldCoin:
-                EconomyManager.Instance.AddCoin();
-                break;
-            case PickUpType.StaminaGlobe:
-                PlayerController.Instance.RestoreStamina();
-                break;
-            case PickUpType.HealthGlobe:
-                PlayerHealth.Instance.Heal(1);
-                break;
         }
     }
 

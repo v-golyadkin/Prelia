@@ -11,7 +11,7 @@ public class AreaEntrance : MonoBehaviour
     {
         if(_transitionName == SceneManagement.Instance.SceneTransitionName)
         {
-            PlayerController.Instance.transform.position = this.transform.position;
+            //PlayerController.Instance.transform.position = this.transform.position;
             CameraController.Instance.SetPlayerCameraFollow();
             UIFade.Instance.FadeToClear();
         }

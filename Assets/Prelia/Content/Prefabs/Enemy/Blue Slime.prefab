@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5032047893961918287}
   - component: {fileID: 25778938068988452}
   m_Layer: 0
-  m_Name: Blue SlimeView
+  m_Name: Blue Slime View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _roamingChangeDirection = 2f;
     [SerializeField] private MonoBehaviour _enemyType;
@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private bool _stopMovingWhileAttacking = false;
 
     private bool _canAttack = true;
+    private Transform _player;
 
     private enum State
     {
@@ -41,6 +42,11 @@ public class EnemyAI : MonoBehaviour
         MovementStateControl();
     }
 
+    public void Initialize(Transform target)
+    {
+        _player = target;
+    }
+
     private void MovementStateControl()
     {
         switch(_state)
@@ -61,7 +67,7 @@ public class EnemyAI : MonoBehaviour
 
         _enemyPathfinding.MoveTo(_roamingPosition);
 
-        if(Vector2.Distance(transform.position, PlayerController.Instance.transform.position) < _attackRange)
+        if(Vector2.Distance(transform.position, _player.position) < _attackRange)
         {
             _state = State.Attacking;
         }
@@ -74,7 +80,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Attacking()
     {
-        if(Vector2.Distance(transform.position, PlayerController.Instance.transform.position) > _attackRange)
+        if(Vector2.Distance(transform.position,_player.position) > _attackRange)
         {
             _state = State.Roaming;
         }

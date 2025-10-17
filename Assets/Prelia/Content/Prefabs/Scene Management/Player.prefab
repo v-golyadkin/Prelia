@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 1960268763256606125}
   - component: {fileID: 8390313665680958493}
   m_Layer: 0
-  m_Name: PlayerView
+  m_Name: Player View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,7 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 557353837993588930}
   m_Layer: 0
-  m_Name: SlashSpawnPoint
+  m_Name: Slash Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -469,6 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7586818610826874203}
   - component: {fileID: 980649078709452861}
+  - component: {fileID: 766455131500673817}
   - component: {fileID: 1621012448000179194}
   - component: {fileID: 8212765238162302738}
   - component: {fileID: 8482983468660653923}
@@ -528,6 +529,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &766455131500673817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9029774363476656929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eac559ca24b9eac4caecdcabf4455921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1621012448000179194
 MonoBehaviour:
   m_ObjectHideFlags: 0

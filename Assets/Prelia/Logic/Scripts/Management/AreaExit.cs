@@ -11,9 +11,9 @@ public class AreaExit : MonoBehaviour
     private float _waitToLoadTime = 1f;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>())
+        if (collision.gameObject.GetComponent<Player>())
         {
-            SceneManagement.Instance.SetTransitionName(_sceneTransitionName);
+            SceneManagement.Instance.SetTransitionName(_sceneTransitionName);       
             UIFade.Instance.FadeToBlack();
             StartCoroutine(LoadSceneRoutine());
         }
@@ -26,6 +26,8 @@ public class AreaExit : MonoBehaviour
             _waitToLoadTime -= Time.deltaTime;
             yield return null;
         }
+
+        Destroy(Player.Instance.gameObject);
 
         SceneManager.LoadScene(_sceneToLoad);
     }
