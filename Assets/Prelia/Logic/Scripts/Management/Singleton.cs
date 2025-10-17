@@ -2,25 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : Singleton<T>
+public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private static T instance;
-    public static T Instance {  get { return instance; } }
+    public static T Instance {  get; private set; }
 
     protected virtual void Awake()
     {
-        if(instance != null && this.gameObject != null)
+        if(Instance != null)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
+            return;       
         }
-        else
-        {
-            instance = (T)this;
-        }
+        Instance = this as T;
+    }
 
-        if (!gameObject.transform.parent)
-        {
-            DontDestroyOnLoad(gameObject);
-        }
+    protected virtual void OnApplicationQuit()
+    {
+        Instance = null;
+        Destroy(gameObject);
     }
 }
