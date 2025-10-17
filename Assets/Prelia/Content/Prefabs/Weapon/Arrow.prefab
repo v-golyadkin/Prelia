@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 8320997897670526966}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -291,6 +291,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 22
   _particleOnHitPrefab: {fileID: 1028197727296259862, guid: 1560a25952d482545b9f5c189e866389, type: 3}
+  _isEnemyProjectile: 0
+  _projectileRange: 10
 --- !u!114 &6210614364486203204
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -51,7 +51,7 @@ public class Pickup : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = _moveDirection * _moveSpeed * Time.deltaTime;
+        _rb.linearVelocity = _moveDirection * _moveSpeed * Time.deltaTime;
     }
 
     private void OnTriggerStay2D(Collider2D collision)

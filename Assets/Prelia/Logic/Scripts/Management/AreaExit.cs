@@ -13,7 +13,7 @@ public class AreaExit : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Player>())
         {
-            SceneManagement.Instance.SetTransitionName(_sceneTransitionName);
+            SceneManagement.Instance.SetTransitionName(_sceneTransitionName);       
             UIFade.Instance.FadeToBlack();
             StartCoroutine(LoadSceneRoutine());
         }
@@ -26,6 +26,8 @@ public class AreaExit : MonoBehaviour
             _waitToLoadTime -= Time.deltaTime;
             yield return null;
         }
+
+        Destroy(Player.Instance.gameObject);
 
         SceneManager.LoadScene(_sceneToLoad);
     }
